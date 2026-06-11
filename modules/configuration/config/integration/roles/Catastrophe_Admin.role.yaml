@@ -1,0 +1,32 @@
+name: "Catastrophe Admin"
+endpoints:
+- endpoint: /admin/v1/catastrophes
+  methods:
+  - GET
+  - POST
+- endpoint: "/admin/v1/catastrophes/*"
+  methods:
+  - GET
+  - DELETE
+  - PATCH
+- endpoint: "/admin/v1/catastrophes/*/catastrophe-zones"
+  methods:
+  - GET
+  - POST
+- endpoint: "/admin/v1/catastrophes/*/catastrophe-zones/*"
+  methods:
+  - GET
+  - DELETE
+- endpoint: "/admin/v1/catastrophes/*/perils"
+  methods:
+  - GET
+  - POST
+- endpoint: "/admin/v1/catastrophes/*/perils/*"
+  methods:
+  - GET
+  - DELETE
+  - PATCH
+accessibleFields:
+  "*":
+    edit: "*"
+    view: "*"

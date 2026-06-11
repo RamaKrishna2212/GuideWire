@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <Page
+    afterCancel="ExchangeRatesSearch.go()"
+    afterCommit="creationHelper.afterCommit(new gw.api.exchangerates.CustomSearchCriteria(), \searchCriteria -&gt; ExchangeRatesSearch.go(searchCriteria))"
+    beforeCommit="creationHelper.beforeCommit()"
+    canEdit="gw.api.exchangerates.ExchangeRatesUIHelper.canEdit()"
+    canVisit="gw.api.exchangerates.ExchangeRatesUIHelper.canEdit()"
+    id="CreateExchangeRates"
+    parent="ExchangeRatesSearch"
+    startInEditMode="true"
+    title="DisplayKey.get(&quot;ExchangeRates.CreateExchangeRates.ImportNewRates&quot;)">
+    <Variable
+      initialValue="new gw.api.exchangerates.ExchangeRatesCreationUIHelper()"
+      name="creationHelper"
+      type="gw.api.exchangerates.ExchangeRatesCreationUIHelper"/>
+    <Screen>
+      <Toolbar>
+        <EditButtons/>
+      </Toolbar>
+      <PanelRef
+        def="ExchangeRateSetDV(creationHelper.ImportHelper.ExchangeRateSet)"/>
+      <PanelRef
+        def="ImportExchangeRatesDV(creationHelper.ImportHelper)"/>
+      <PanelRef
+        def="ExchangeRatesLV(creationHelper.ImportHelper.ExchangeRateSet)">
+        <Toolbar>
+          <IteratorButtons
+            iterator="ExchangeRatesLV.ExchangeRatesLV"/>
+        </Toolbar>
+      </PanelRef>
+    </Screen>
+  </Page>
+</PCF>

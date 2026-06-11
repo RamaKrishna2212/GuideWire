@@ -1,0 +1,50 @@
+package rules.Validation.ExposureValidationRules_dir
+uses gw.api.locale.DisplayKey
+uses gw.api.util.CurrencyUtil
+
+@gw.rules.RuleName("EXV09000 - Deductible Data")
+internal class EXV09000DeductibleData {
+  static function doCondition(exposure : entity.Exposure) : boolean {
+/*start00rule*/
+    return exposure.Coverage != null and exposure.Coverage.ClaimDeductible != null
+/*end00rule*/
+  }
+
+  static function doAction(exposure : entity.Exposure, actions : gw.rules.Action) {
+/*start00rule*/
+    var deductible = exposure.Coverage.ClaimDeductible
+    if (deductible.Overridden and deductible.EditReason == null) {
+      exposure.rejectField("ClaimDeductible.EditReason", ValidationLevel.TC_LOADSAVE,
+          DisplayKey.get("Rules.Validation.Exposure.Deductible.EditReasonRequired", "Overridden"), null, null)
+    }
+    if (deductible.Waived) {
+      if (deductible.TransactionLineItems.HasElements) {
+        exposure.rejectField("ClaimDeductible.Waived", ValidationLevel.TC_LOADSAVE,
+            DisplayKey.get("Rules.Validation.Exposure.Deductible.DeductibleCannotBeWaived"), null, null)
+      } else if (deductible.EditReason == null) {
+        exposure.rejectField("Coverage.ClaimDeductible.EditReason", ValidationLevel.TC_LOADSAVE,
+            DisplayKey.get("Rules.Validation.Exposure.Deductible.EditReasonRequired", "Waived"), null, null)
+      }
+    }
+    if (!deductible.Overridden and !deductible.Waived and deductible.EditReason != null) {
+      exposure.rejectField("Coverage.ClaimDeductible.EditReason", ValidationLevel.TC_LOADSAVE,
+          DisplayKey.get("Rules.Validation.Exposure.Deductible.EditReasonMustBeEmpty"), null, null)
+    }
+    if (deductible.Amount != null and deductible.Coverage.HasDeductibleAmount) {
+      // The amounts could be in different currencies so convert to coverage's currency and then compare
+      var convertedDeductibleAmount = CurrencyUtil.convertAmount(deductible.Amount, deductible.Amount.Currency, deductible.Coverage.Currency,
+          null, false, null)
+      if (convertedDeductibleAmount > deductible.Coverage.DeductibleAmount) {
+        exposure.rejectField("Coverage.ClaimDeductible.Amount", ValidationLevel.TC_LOADSAVE,
+            DisplayKey.get("Rules.Validation.Exposure.Deductible.AmountCannotExceedOriginal", deductible.Amount,
+                CurrencyUtil.renderAsCurrency(deductible.Coverage.DeductibleAmount)), null, null)
+      }
+      if (convertedDeductibleAmount != deductible.Coverage.DeductibleAmount and !deductible.Overridden) {
+        exposure.rejectField("Coverage.ClaimDeductible.Amount", ValidationLevel.TC_LOADSAVE,
+            DisplayKey.get("Rules.Validation.Exposure.Deductible.AmountMustEqualOriginal", deductible.Amount,
+                CurrencyUtil.renderAsCurrency(deductible.Coverage.DeductibleAmount)), null, null)
+      }
+    } 
+/*end00rule*/
+  }
+}

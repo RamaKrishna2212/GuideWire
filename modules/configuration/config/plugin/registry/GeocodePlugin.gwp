@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<plugin
+  name="GeocodePlugin">
+  <plugin-gosu
+    disabled="true"
+    gosuclass="gw.plugin.geocode.impl.AzureMapsPlugin">
+    <!-- required parameters  credentials -->
+    <param
+      name="applicationKey"
+      value=""/>
+    <!-- optional parameters  localization  See https://learn.microsoft.com/en-us/azure/azure-maps/supported-languages for supported geocode and directions cultures -->
+    <param
+      name="geocodeDirectionsCulture"
+      value=""/>
+    <!-- See https://learn.microsoft.com/en-us/azure/azure-maps/supported-languages for supported imagery culture codes -->
+    <param
+      name="imageryCulture"
+      value=""/>
+    <!-- map url  width and height are expressed in pixels -->
+    <param
+      name="mapUrlWidth"
+      value=""/>
+    <param
+      name="mapUrlHeight"
+      value=""/>
+  </plugin-gosu>
+</plugin>

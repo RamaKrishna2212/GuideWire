@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../../pcf.xsd">
+  <InputSet
+    id="ClaimIndicatorInputSet"
+    mode="AssessmentClaimIndicator">
+    <Require
+      name="indicator"
+      type="ClaimIndicator"/>
+    <InputIterator
+      elementName="highRiskAssessment"
+      id="HighRiskAssessmentIterator"
+      value="gw.assessment.AssessmentDisplayHelper.getHighRiskAssessments(indicator.Claim)"
+      valueType="java.util.List&lt;entity.AssessmentSummary&gt;">
+      <TextInput
+        id="HighRiskAssessment"
+        label="gw.assessment.AssessmentDisplayHelper.getAssessmentClaimIndicatorLabel(highRiskAssessment)"
+        value="highRiskAssessment.Category"/>
+    </InputIterator>
+  </InputSet>
+</PCF>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<typelistextension
+  xmlns="http://guidewire.com/typelists"
+  desc="The subjective pronoun type"
+  name="PronounAggregateType">
+  <typecode
+    code="theythemtheirs"
+    desc="They/Them/Theirs"
+    name="They/Them/Theirs"
+    priority="3">
+    <category
+      code="they"
+      typelist="PronounSubjectiveType"/>
+    <category
+      code="them"
+      typelist="PronounObjectiveType"/>
+    <category
+      code="theirs"
+      typelist="PronounPossessiveType"/>
+  </typecode>
+  <typecode
+    code="zezirzirs"
+    desc="Ze/Zir/Zirs"
+    name="Ze/Zir/Zirs"
+    priority="4">
+    <category
+      code="ze"
+      typelist="PronounSubjectiveType"/>
+    <category
+      code="zir"
+      typelist="PronounObjectiveType"/>
+    <category
+      code="zirs"
+      typelist="PronounPossessiveType"/>
+  </typecode>
+</typelistextension>

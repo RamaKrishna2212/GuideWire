@@ -1,0 +1,18 @@
+package rules.EventMessage.EventFired_dir.BillingSystem_dir
+
+uses gw.financials.payment.BillingMessageUtil
+
+@gw.rules.RuleName("ClaimRecovery")
+internal class ClaimRecovery {
+  static function doCondition(messageContext  :  entity.MessageContext) : boolean {
+/*start00rule*/
+return BillingMessageUtil.canSendClaimRecoveryToBillingSystem(messageContext)
+/*end00rule*/
+}
+
+  static function doAction(messageContext  :  entity.MessageContext, actions : gw.rules.Action) {
+/*start00rule*/
+    BillingMessageUtil.createBillingMessageIfNecessary(messageContext)
+/*end00rule*/
+  }
+}

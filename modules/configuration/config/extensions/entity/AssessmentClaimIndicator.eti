@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<subtype
+  xmlns="http://guidewire.com/datamodel"
+  entity="AssessmentClaimIndicator"
+  desc="ClaimIndicator for the Assessment summary results for the claim"
+  supertype="ClaimIndicator">
+  <implementsInterface
+    iface="gw.api.claim.indicator.ClaimIndicatorMethods"
+    impl="gw.claim.indicator.AssessmentClaimIndicatorMethodsImpl"/>
+  <column
+    desc="Number of high risk assessments"
+    name="NumHighRiskAssessments"
+    nullok="true"
+    default="0"
+    type="integer">
+  </column>
+</subtype>

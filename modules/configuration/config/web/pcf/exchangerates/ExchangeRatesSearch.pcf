@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <Page
+    canVisit="gw.api.exchangerates.ExchangeRatesUIHelper.canView()"
+    id="ExchangeRatesSearch"
+    title="DisplayKey.get(&quot;ExchangeRates.ExchangeRates.Title&quot;)">
+    <LocationEntryPoint
+      signature="ExchangeRatesSearch()"/>
+    <LocationEntryPoint
+      signature="ExchangeRatesSearch(searchCriteria: gw.api.exchangerates.SearchCriteria)"/>
+    <Variable
+      initialValue="new gw.api.exchangerates.CustomSearchCriteria()"
+      name="searchCriteria"
+      type="gw.api.exchangerates.SearchCriteria"/>
+    <Screen>
+      <Toolbar>
+        <ToolbarButton
+          action="CreateExchangeRates.go()"
+          id="importNewRates"
+          label="DisplayKey.get(&quot;ExchangeRates.CreateExchangeRates.ImportNewRates&quot;)"
+          visible="gw.api.exchangerates.ExchangeRatesUIHelper.canEdit()"/>
+        <ToolbarButton
+          action="EditExchangeRatesWizard.push(searchCriteria)"
+          id="editExistingRates"
+          label="DisplayKey.get(&quot;ExchangeRates.ExchangeRatesSearch.EditExistingRates&quot;)"
+          visible="gw.api.exchangerates.ExchangeRatesUIHelper.canEdit()"/>
+      </Toolbar>
+      <SearchPanel
+        cachingEnabled="not searchCriteria.SearchOnEnter"
+        criteriaName="searchCriteriaPanel"
+        resultsName="searchResults"
+        search="searchCriteria.performSearch()"
+        searchCriteria="searchCriteria"
+        searchCriteriaType="gw.api.exchangerates.SearchCriteria"
+        searchOnEnter="searchCriteria.SearchOnEnter"
+        searchResultsType="gw.api.database.IQueryBeanResult&lt;FXExchangeRate&gt;">
+        <PanelRef
+          def="ExchangeRatesSearchDV(searchCriteria)"/>
+        <PanelRef
+          def="ExchangeRatesSearchLV(searchResults, null)"/>
+      </SearchPanel>
+    </Screen>
+  </Page>
+</PCF>

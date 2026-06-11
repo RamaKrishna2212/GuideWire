@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<typelistextension
+  xmlns="http://guidewire.com/typelists"
+  desc="The sex assigned at birth"
+  name="SexAssignedAtBirthType">
+  
+  <!--Below included as an example-->
+  <!--  <typecode
+      code="intersex"
+      desc="intersex"
+      name="intersex"/>-->
+  
+</typelistextension>

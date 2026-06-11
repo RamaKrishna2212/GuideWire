@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <InputSet
+    id="TransactionEditWrapperExchangeRateInputSet"
+    visible="gw.api.util.CurrencyUtil.isMultiCurrencyMode() and transaction.Currency != transaction.ReservingCurrency">
+    <Require
+      name="transactionEditWrapper"
+      type="TransactionEditWrapper"/>
+    <Variable
+      initialValue="transactionEditWrapper.Transaction"
+      name="transaction"
+      type="Transaction"/>
+    <Variable
+      initialValue="transaction.UsingDeprecatedExchangeRates"
+      name="usingDeprecatedExchangeRates"
+      type="Boolean"/>
+    <BooleanRadioInput
+      editable="perm.ExchangeRate.edit"
+      falseLabel="DisplayKey.get(&quot;Web.Claim.TransactionEditWrapperExchangeRateInputSet.Automatic&quot;)"
+      id="ManualOrAutomatic"
+      label="DisplayKey.get(&quot;Web.Claim.TransactionEditWrapperExchangeRateInputSet.ExchangeRateMode&quot;)"
+      trueLabel="DisplayKey.get(&quot;Web.Claim.TransactionEditWrapperExchangeRateInputSet.Manual&quot;)"
+      value="transactionEditWrapper.OverrideExchangeRate">
+      <PostOnChange/>
+    </BooleanRadioInput>
+    <TextInput
+      editable="transaction.OverrideTransToReservingExchangeRate"
+      format="usingDeprecatedExchangeRates ? DisplayKey.get(&quot;Web.Claim.ExchangeRateInputSet.RateFormatter&quot;, transaction.TransToReservingExchangeRate.BaseCurrency.DisplayName, transaction.TransToReservingExchangeRate.PriceCurrency.DisplayName) : DisplayKey.get(&quot;Web.Claim.ExchangeRateInputSet.RateFormatter&quot;, transaction.TransToReservingExchangeRateInUse.FromCurrency.DisplayName, transaction.TransToReservingExchangeRateInUse.ToCurrency.DisplayName)"
+      formatType="exactNumber"
+      id="ExchangeRate"
+      label="DisplayKey.get(&quot;Web.Claim.TransactionEditWrapperExchangeRateInputSet.ExchangeRate&quot;)"
+      value="transactionEditWrapper.ExchangeRateRate"
+      valueType="java.math.BigDecimal">
+      <PostOnChange/>
+    </TextInput>
+    <TextInput
+      editable="transaction.OverrideTransToReservingExchangeRate"
+      id="Description"
+      label="DisplayKey.get(&quot;Web.Claim.TransactionEditWrapperExchangeRateInputSet.RateSetDescription&quot;)"
+      value="transaction.TransToReservingExchangeRate.ExchangeRateSet.Description"
+      visible="usingDeprecatedExchangeRates"/>
+    <DateInput
+      id="Date"
+      label="DisplayKey.get(&quot;Web.Claim.TransactionEditWrapperExchangeRateInputSet.ExchangeRateDate&quot;)"
+      value="transaction.TransToReservingExchangeRate.ExchangeRateSet.EffectiveDate"
+      visible="usingDeprecatedExchangeRates"/>
+  </InputSet>
+</PCF>

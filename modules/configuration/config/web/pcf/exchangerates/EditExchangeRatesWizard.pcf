@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <Wizard
+    afterFinish="ExchangeRatesSearch.go(searchCriteria)"
+    beforeCommit="editionHelper.beforeCommit()"
+    canEdit="gw.api.exchangerates.ExchangeRatesUIHelper.canEdit()"
+    canVisit="gw.api.exchangerates.ExchangeRatesUIHelper.canEdit()"
+    id="EditExchangeRatesWizard">
+    <LocationEntryPoint
+      signature="EditExchangeRatesWizard(searchCriteria: gw.api.exchangerates.SearchCriteria)"/>
+    <Variable
+      name="searchCriteria"
+      type="gw.api.exchangerates.SearchCriteria"/>
+    <Variable
+      initialValue="new gw.api.exchangerates.ExchangeRatesEditionUIHelper(searchCriteria)"
+      name="editionHelper"
+      type="gw.api.exchangerates.ExchangeRatesEditionUIHelper"/>
+    <WizardStep
+      allowNext="false"
+      id="selection"
+      screen="EditExchangeRatesSelectionScreen(editionHelper)"
+      title="DisplayKey.get(&quot;ExchangeRates.EditExchangeRatesWizard.SelectionStep&quot;)"/>
+    <WizardStep
+      id="confirmation"
+      screen="EditExchangeRatesConfirmationScreen(editionHelper)"
+      title="DisplayKey.get(&quot;ExchangeRates.EditExchangeRatesWizard.ConfirmationStep&quot;)"/>
+  </Wizard>
+</PCF>

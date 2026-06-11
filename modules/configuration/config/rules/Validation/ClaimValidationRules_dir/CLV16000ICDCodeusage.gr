@@ -1,0 +1,57 @@
+package rules.Validation.ClaimValidationRules_dir
+uses gw.api.locale.DisplayKey
+uses libraries.ICDCodeUtil
+
+@gw.rules.RuleName("CLV16000 - ICDCode usage")
+internal class CLV16000ICDCodeusage {
+  static function doCondition(claim  :  entity.Claim) : boolean {
+/*start00rule*/
+    return true
+/*end00rule*/
+}
+
+  static function doAction(claim  :  entity.Claim, actions : gw.rules.Action) {
+/*start00rule*/
+    var changedInjuryDiagnoses = claim.Bundle.getInsertedAndUpdatedBeansOfType(InjuryDiagnosis)
+    var medTreatments = claim.MedicalTreatments
+
+    if (changedInjuryDiagnoses.HasElements or medTreatments.HasElements) {
+      var diagnosisICDCodes = ICDCodeUtil.getICDCodesOnClaimFromDB(claim)
+
+      Collections.addAll(diagnosisICDCodes, changedInjuryDiagnoses*.ICDCode)
+
+      var removedDiagnoses = claim.Bundle.getRemovedBeansOfType(InjuryDiagnosis)
+      if (removedDiagnoses.HasElements) {
+        diagnosisICDCodes.removeAll(removedDiagnoses*.ICDCode.toSet())
+      }
+
+      var icdEditions = diagnosisICDCodes*.Edition.toSet()
+      if (icdEditions.size() > 1) {
+        claim.reject(TC_LOADSAVE, DisplayKey.get("Web.Admin.ICD.MixedICDEditions"), null, null)
+      }
+
+      if (medTreatments.HasElements) {
+        var treatmentICDCodeFields = {
+            MedicalTreatment#ICD1,
+            MedicalTreatment#ICD2,
+            MedicalTreatment#ICD3,
+            MedicalTreatment#ICD4
+        }
+
+        var validICDCodesForTreatment = diagnosisICDCodes*.Code.toSet()
+        var treatmentICDCode : String
+
+        for (eachTreatment in medTreatments) {
+          for (icdCodeField in treatmentICDCodeFields) {
+            treatmentICDCode = icdCodeField.get(eachTreatment)
+            if (treatmentICDCode != null and !validICDCodesForTreatment.contains(treatmentICDCode)) {
+              claim.reject(null, null, TC_LOADSAVE,
+                  DisplayKey.get("Web.Admin.ICD.ICDCode.IsNotInMedicalDiagnosisList", treatmentICDCode, eachTreatment.ApprovedTreatment))
+            }
+          }
+        }
+      }
+    } 
+/*end00rule*/
+  }
+}

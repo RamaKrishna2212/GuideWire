@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<typelistextension
+  xmlns="http://guidewire.com/typelists"
+  desc="The possessive pronoun type"
+  name="PronounPossessiveType">
+  <typecode
+    code="theirs"
+    desc="Theirs"
+    name="Theirs"/>
+  <typecode
+    code="zirs"
+    desc="Zirs"
+    name="Zirs"/>
+</typelistextension>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../pcf.xsd">
+  <DetailViewPanel
+    id="ImportExchangeRatesDV">
+    <Require
+      name="importData"
+      type="gw.api.exchangerates.ExchangeRatesImportUIHelper"/>
+    <InputColumn>
+      <FileInput
+        acceptableMimeTypes="text/csv"
+        confirmMessage="DisplayKey.get(&quot;ExchangeRates.ImportExchangeRatesDV.InputFile.ConfirmMessage&quot;)"
+        editable="true"
+        id="inputFile"
+        showConfirmMessage="importData.showConfirmMessage()"
+        value="importData.File">
+        <PostOnChange/>
+      </FileInput>
+    </InputColumn>
+  </DetailViewPanel>
+</PCF>

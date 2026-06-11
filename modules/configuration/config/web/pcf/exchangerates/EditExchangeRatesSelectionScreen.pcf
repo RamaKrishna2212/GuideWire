@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <Screen
+    id="EditExchangeRatesSelectionScreen">
+    <Require
+      name="editionHelper"
+      type="gw.api.exchangerates.ExchangeRatesEditionUIHelper"/>
+    <Toolbar>
+      <WizardButtons/>
+    </Toolbar>
+    <SearchPanel
+      criteriaName="searchCriteriaPanel"
+      resultsName="searchResults"
+      search="editionHelper.SearchCriteria.performSearch()"
+      searchCriteria="editionHelper.SearchCriteria"
+      searchCriteriaType="gw.api.exchangerates.SearchCriteria"
+      searchOnEnter="editionHelper.SearchCriteria.SearchOnEnter"
+      searchResultsType="gw.api.database.IQueryBeanResult&lt;FXExchangeRate&gt;">
+      <PanelRef
+        def="ExchangeRatesSearchDV(editionHelper.SearchCriteria)"/>
+      <PanelRef
+        def="ExchangeRatesSearchLV(searchResults, editionHelper.SelectionHandler)"/>
+    </SearchPanel>
+  </Screen>
+</PCF>

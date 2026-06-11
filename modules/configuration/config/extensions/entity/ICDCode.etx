@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<extension
+  xmlns="http://guidewire.com/datamodel"
+  entityName="ICDCode">
+  <index
+    desc="Index to ensure there is only one ICDCode per unique combination of Code and Edition"
+    name="codeeditionu1"
+    unique="true">
+    <indexcol
+      keyposition="1"
+      name="Code"/>
+    <indexcol
+      keyposition="2"
+      name="Edition"/>
+    <indexcol
+      keyposition="3"
+      name="Retired"/>
+  </index>
+</extension>

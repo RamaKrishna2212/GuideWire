@@ -1,0 +1,342 @@
+<?xml version="1.0"?>
+<typelistextension
+  xmlns="http://guidewire.com/typelists"
+  desc="Represents broad classifications of ICD codes used for categorization"
+  name="ICDBodySystem">
+  <typecode
+    code="icd10_1"
+    desc="Certain infectious and parasitic diseases (ICD10 A00-B99)"
+    name="Certain infectious and parasitic diseases (ICD10 A00-B99)"
+    priority="101"
+    retired="true">
+  </typecode>
+  <typecode
+    code="icd10_2"
+    desc="Neoplasms (ICD10 C00-D49)"
+    name="Neoplasms (ICD10 C00-D49)"
+    priority="102"
+    retired="true">
+  </typecode>
+  <typecode
+    code="icd10_3"
+    desc="Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism (ICD10 D50-D89)"
+    name="Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism (ICD10 D50-D89)"
+    priority="103"
+    retired="true">
+  </typecode>
+  <typecode
+    code="icd10_4"
+    desc="Endocrine, nutritional and metabolic diseases (ICD10 E00-E89)"
+    name="Endocrine, nutritional and metabolic diseases (ICD10 E00-E89)"
+    priority="104"
+    retired="true">
+  </typecode>
+  <typecode
+    code="icd10_5"
+    desc="Mental, Behavioral and Neurodevelopmental disorders (ICD10 F01-F99)"
+    name="Mental, Behavioral and Neurodevelopmental disorders (ICD10 F01-F99)"
+    priority="105"
+    retired="true">
+  </typecode>
+  <typecode
+    code="icd10_6"
+    desc="Diseases of the nervous system (ICD10 G00-G99)"
+    name="Diseases of the nervous system (ICD10 G00-G99)"
+    priority="106"
+    retired="true">
+  </typecode>
+  <typecode
+    code="icd10_7"
+    desc="Diseases of the eye and adnexa (ICD10 H00-H59)"
+    name="Diseases of the eye and adnexa (ICD10 H00-H59)"
+    priority="107"
+    retired="true">
+  </typecode>
+  <typecode
+    code="icd10_8"
+    desc="Diseases of the ear and mastoid process (ICD10 H60-H95)"
+    name="Diseases of the ear and mastoid process (ICD10 H60-H95)"
+    priority="108"
+    retired="true">
+  </typecode>
+  <typecode
+    code="icd10_9"
+    desc="Diseases of the circulatory system (ICD10 I00-I99)"
+    name="Diseases of the circulatory system (ICD10 I00-I99)"
+    priority="109"
+    retired="true">
+  </typecode>
+  <typecode
+    code="icd10_10"
+    desc="Diseases of the respiratory system (ICD10 J00-J99)"
+    name="Diseases of the respiratory system (ICD10 J00-J99)"
+    priority="110"
+    retired="true">
+  </typecode>
+  <typecode
+    code="icd10_11"
+    desc="Diseases of the digestive system (ICD10 K00-K95)"
+    name="Diseases of the digestive system (ICD10 K00-K95)"
+    priority="111"
+    retired="true">
+  </typecode>
+  <typecode
+    code="icd10_12"
+    desc="Diseases of the skin and subcutaneous tissue (ICD10 L00-L99)"
+    name="Diseases of the skin and subcutaneous tissue (ICD10 L00-L99)"
+    priority="112"
+    retired="true">
+  </typecode>
+  <typecode
+    code="icd10_13"
+    desc="Diseases of the musculoskeletal system and connective tissue (ICD10 M00-M99)"
+    name="Diseases of the musculoskeletal system and connective tissue (ICD10 M00-M99)"
+    priority="113"
+    retired="true">
+  </typecode>
+  <typecode
+    code="icd10_14"
+    desc="Diseases of the genitourinary system (ICD10 N00-N99)"
+    name="Diseases of the genitourinary system (ICD10 N00-N99)"
+    priority="114"
+    retired="true">
+  </typecode>
+  <typecode
+    code="icd10_15"
+    desc="Pregnancy, childbirth and the puerperium (ICD10 O00-O9A)"
+    name="Pregnancy, childbirth and the puerperium (ICD10 O00-O9A)"
+    priority="115"
+    retired="true">
+  </typecode>
+  <typecode
+    code="icd10_16"
+    desc="Certain conditions originating in the perinatal period (ICD10 P00-P96)"
+    name="Certain conditions originating in the perinatal period (ICD10 P00-P96)"
+    priority="116"
+    retired="true">
+  </typecode>
+  <typecode
+    code="icd10_17"
+    desc="Congenital malformations, deformations and chromosomal abnormalities (ICD10 Q00-Q99)"
+    name="Congenital malformations, deformations and chromosomal abnormalities (ICD10 Q00-Q99)"
+    priority="117"
+    retired="true">
+  </typecode>
+  <typecode
+    code="icd10_18"
+    desc="Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified (ICD10 R00-R99)"
+    name="Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified (ICD10 R00-R99)"
+    priority="118"
+    retired="true">
+  </typecode>
+  <typecode
+    code="icd10_19"
+    desc="Injury, poisoning and certain other consequences of external causes (ICD10 S00-T88)"
+    name="Injury, poisoning and certain other consequences of external causes (ICD10 S00-T88)"
+    priority="119"
+    retired="true">
+  </typecode>
+  <typecode
+    code="icd10_20"
+    desc="External causes of morbidity (ICD10 V00-Y99)"
+    name="External causes of morbidity (ICD10 V00-Y99)"
+    priority="120"
+    retired="true">
+  </typecode>
+  <typecode
+    code="icd10_21"
+    desc="Factors influencing health status and contact with health services (ICD10 Z00-Z99)"
+    name="Factors influencing health status and contact with health services (ICD10 Z00-Z99)"
+    priority="121"
+    retired="true">
+  </typecode>
+  <typecode
+    code="INF"
+    desc="Certain infectious and parasitic diseases (ICD10 A00-B99)"
+    name="Certain infectious and parasitic diseases (ICD10 A00-B99)"
+    priority="101">
+    <category
+      code="ICD10"
+      typelist="ICDEdition"/>
+  </typecode>
+  <typecode
+    code="NEO"
+    desc="Neoplasms (ICD10 C00-D49)"
+    name="Neoplasms (ICD10 C00-D49)"
+    priority="102">
+    <category
+      code="ICD10"
+      typelist="ICDEdition"/>
+  </typecode>
+  <typecode
+    code="BLD"
+    desc="Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism (ICD10 D50-D89)"
+    name="Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism (ICD10 D50-D89)"
+    priority="103">
+    <category
+      code="ICD10"
+      typelist="ICDEdition"/>
+  </typecode>
+  <typecode
+    code="END"
+    desc="Endocrine, nutritional and metabolic diseases (ICD10 E00-E89)"
+    name="Endocrine, nutritional and metabolic diseases (ICD10 E00-E89)"
+    priority="104">
+    <category
+      code="ICD10"
+      typelist="ICDEdition"/>
+  </typecode>
+  <typecode
+    code="MBD"
+    desc="Mental, Behavioral and Neurodevelopmental disorders (ICD10 F01-F99)"
+    name="Mental, Behavioral and Neurodevelopmental disorders (ICD10 F01-F99)"
+    priority="105">
+    <category
+      code="ICD10"
+      typelist="ICDEdition"/>
+  </typecode>
+  <typecode
+    code="NVS"
+    desc="Diseases of the nervous system (ICD10 G00-G99)"
+    name="Diseases of the nervous system (ICD10 G00-G99)"
+    priority="106">
+    <category
+      code="ICD10"
+      typelist="ICDEdition"/>
+  </typecode>
+  <typecode
+    code="EYE"
+    desc="Diseases of the eye and adnexa (ICD10 H00-H59)"
+    name="Diseases of the eye and adnexa (ICD10 H00-H59)"
+    priority="107">
+    <category
+      code="ICD10"
+      typelist="ICDEdition"/>
+  </typecode>
+  <typecode
+    code="EAR"
+    desc="Diseases of the ear and mastoid process (ICD10 H60-H95)"
+    name="Diseases of the ear and mastoid process (ICD10 H60-H95)"
+    priority="108">
+    <category
+      code="ICD10"
+      typelist="ICDEdition"/>
+  </typecode>
+  <typecode
+    code="CIR"
+    desc="Diseases of the circulatory system (ICD10 I00-I99)"
+    name="Diseases of the circulatory system (ICD10 I00-I99)"
+    priority="109">
+    <category
+      code="ICD10"
+      typelist="ICDEdition"/>
+  </typecode>
+  <typecode
+    code="RSP"
+    desc="Diseases of the respiratory system (ICD10 J00-J99)"
+    name="Diseases of the respiratory system (ICD10 J00-J99)"
+    priority="110">
+    <category
+      code="ICD10"
+      typelist="ICDEdition"/>
+  </typecode>
+  <typecode
+    code="DIG"
+    desc="Diseases of the digestive system (ICD10 K00-K95)"
+    name="Diseases of the digestive system (ICD10 K00-K95)"
+    priority="111">
+    <category
+      code="ICD10"
+      typelist="ICDEdition"/>
+  </typecode>
+  <typecode
+    code="SKN"
+    desc="Diseases of the skin and subcutaneous tissue (ICD10 L00-L99)"
+    name="Diseases of the skin and subcutaneous tissue (ICD10 L00-L99)"
+    priority="112">
+    <category
+      code="ICD10"
+      typelist="ICDEdition"/>
+  </typecode>
+  <typecode
+    code="MUS"
+    desc="Diseases of the musculoskeletal system and connective tissue (ICD10 M00-M99)"
+    name="Diseases of the musculoskeletal system and connective tissue (ICD10 M00-M99)"
+    priority="113">
+    <category
+      code="ICD10"
+      typelist="ICDEdition"/>
+  </typecode>
+  <typecode
+    code="GEN"
+    desc="Diseases of the genitourinary system (ICD10 N00-N99)"
+    name="Diseases of the genitourinary system (ICD10 N00-N99)"
+    priority="114">
+    <category
+      code="ICD10"
+      typelist="ICDEdition"/>
+  </typecode>
+  <typecode
+    code="PRG"
+    desc="Pregnancy, childbirth and the puerperium (ICD10 O00-O9A)"
+    name="Pregnancy, childbirth and the puerperium (ICD10 O00-O9A)"
+    priority="115">
+    <category
+      code="ICD10"
+      typelist="ICDEdition"/>
+  </typecode>
+  <typecode
+    code="PNL"
+    desc="Certain conditions originating in the perinatal period (ICD10 P00-P96)"
+    name="Certain conditions originating in the perinatal period (ICD10 P00-P96)"
+    priority="116">
+    <category
+      code="ICD10"
+      typelist="ICDEdition"/>
+  </typecode>
+  <typecode
+    code="MAL"
+    desc="Congenital malformations, deformations and chromosomal abnormalities (ICD10 Q00-Q99)"
+    name="Congenital malformations, deformations and chromosomal abnormalities (ICD10 Q00-Q99)"
+    priority="117">
+    <category
+      code="ICD10"
+      typelist="ICDEdition"/>
+  </typecode>
+  <typecode
+    code="SYM"
+    desc="Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified (ICD10 R00-R99)"
+    name="Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified (ICD10 R00-R99)"
+    priority="118">
+    <category
+      code="ICD10"
+      typelist="ICDEdition"/>
+  </typecode>
+  <typecode
+    code="INJ"
+    desc="Injury, poisoning and certain other consequences of external causes (ICD10 S00-T88)"
+    name="Injury, poisoning and certain other consequences of external causes (ICD10 S00-T88)"
+    priority="119">
+    <category
+      code="ICD10"
+      typelist="ICDEdition"/>
+  </typecode>
+  <typecode
+    code="EXT"
+    desc="External causes of morbidity (ICD10 V00-Y99)"
+    name="External causes of morbidity (ICD10 V00-Y99)"
+    priority="120">
+    <category
+      code="ICD10"
+      typelist="ICDEdition"/>
+  </typecode>
+  <typecode
+    code="FAC"
+    desc="Factors influencing health status and contact with health services (ICD10 Z00-Z99)"
+    name="Factors influencing health status and contact with health services (ICD10 Z00-Z99)"
+    priority="121">
+    <category
+      code="ICD10"
+      typelist="ICDEdition"/>
+  </typecode>
+</typelistextension>

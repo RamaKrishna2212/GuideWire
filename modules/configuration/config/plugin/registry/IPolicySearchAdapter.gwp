@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<plugin
+  interface="IPolicySearchAdapter"
+  name="IPolicySearchAdapter"
+  profile="${PLUGIN_IPOLICYSEARCHADAPTER_PROFILE:}">
+  <plugin-gosu
+    gosuclass="gw.plugin.policy.impl.PolicySearchPluginDemoImpl"/>
+  <plugin-gosu
+    additionalInterfaces="gw.rest.core.cc.testutil.v1.plugin.policy.PolicyStorePlugin"
+    gosuclass="gw.rest.core.cc.testutil.v1.plugin.policy.TestUtilPolicySearchAdapter"
+    profile="testutil-api"/>
+</plugin>

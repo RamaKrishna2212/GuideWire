@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <ListViewPanel
+    id="ExchangeRatesSearchLV">
+    <Require
+      name="exchangeRates"
+      type="gw.api.database.IQueryBeanResult&lt;FXExchangeRate&gt;"/>
+    <Require
+      name="selectionHandler"
+      type="java.util.function.BiConsumer&lt;FXExchangeRateSet, pcf.api.Wizard&gt;"/>
+    <RowIterator
+      editable="false"
+      elementName="exchangeRate"
+      value="exchangeRates"
+      valueType="gw.api.database.IQueryBeanResult&lt;entity.FXExchangeRate&gt;">
+      <Row>
+        <LinkCell
+          visible="selectionHandler != null">
+          <Link
+            action="selectionHandler.accept(exchangeRate.FXExchangeRateSet, CurrentLocation as pcf.api.Wizard)"
+            id="selectLink"
+            label="DisplayKey.get(&quot;Button.Select&quot;)"/>
+        </LinkCell>
+        <DateCell
+          id="effectiveDate"
+          label="DisplayKey.get(&quot;ExchangeRates.ExchangeRatesSearchLV.EffectiveDate&quot;)"
+          sortOrder="1"
+          value="exchangeRate.FXExchangeRateSet.EffectiveDate"/>
+        <DateCell
+          id="expirationDate"
+          label="DisplayKey.get(&quot;ExchangeRates.ExchangeRatesSearchLV.ExpirationDate&quot;)"
+          value="exchangeRate.FXExchangeRateSet.ExpirationDate"/>
+        <TypeKeyCell
+          id="priceCurrency"
+          label="DisplayKey.get(&quot;ExchangeRates.ExchangeRatesSearchLV.PriceCurrency&quot;)"
+          value="exchangeRate.getPriceCurrency()"
+          valueType="typekey.Currency"/>
+        <TypeKeyCell
+          id="rateType"
+          label="DisplayKey.get(&quot;ExchangeRates.ExchangeRatesSearchLV.RateType&quot;)"
+          value="exchangeRate.FXExchangeRateSet.RateType"
+          valueType="typekey.FXRateMarket"/>
+        <TextCell
+          id="rate"
+          label="DisplayKey.get(&quot;ExchangeRates.ExchangeRatesSearchLV.Rate&quot;)"
+          value="exchangeRate.Rate"
+          valueType="java.math.BigDecimal"/>
+      </Row>
+    </RowIterator>
+  </ListViewPanel>
+</PCF>

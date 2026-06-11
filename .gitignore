@@ -1,0 +1,5 @@
+
+# Large files excluded from GitHub (>100MB limit)
+solr/cc-gwsolr.zip
+gradle/wrapper/gradle.zip
+repository/com/guidewire/cc/cc-content/50.14.0/cc-content-50.14.0.jar

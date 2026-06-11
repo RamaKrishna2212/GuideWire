@@ -1,0 +1,25 @@
+package rules.Validation.ClaimValidationRules_dir
+
+uses gw.api.locale.DisplayKey
+
+@gw.rules.RuleName("CLV17000 - Medical Treatment Provider Validation")
+internal class CLV17000MedicalTreatmentProviderValidation {
+  static function doCondition(claim : entity.Claim) : boolean {
+/*start00rule*/
+    return claim.MedicalTreatments.length > 0
+/*end00rule*/
+  }
+
+  static function doAction(claim : entity.Claim, actions : gw.rules.Action) {
+/*start00rule*/
+    var providerRoles : List<ContactRole> = {TC_DOCTOR, TC_FIRSTINTAKEDOCTOR, TC_PRIMARYDOCTOR, TC_OCCTHERAPIST, TC_PHYSTHERAPIST}
+    for (var treatment in claim.MedicalTreatments) {
+      if (treatment.isFieldChanged(MedicalTreatment#ClaimContact)) {
+        if (!treatment.ClaimContact.Roles*.Role.hasMatch(\role -> providerRoles.contains(role))) {
+          claim.reject(ValidationLevel.TC_LOADSAVE, DisplayKey.get("Rules.Validation.Claim.MedicalTreatment.ProviderRole", providerRoles), null, null)
+        }
+      }
+    }
+/*end00rule*/
+  }
+}

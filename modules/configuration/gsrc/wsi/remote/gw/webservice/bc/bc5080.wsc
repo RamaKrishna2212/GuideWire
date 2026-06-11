@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<webservice-collection xmlns="http://guidewire.com/config/webservicecollection">
+  <resources>
+    <resource>
+      <url>${bc}/ws/gw/webservice/policycenter/bc5080/BillingAPI?wsdl</url>
+    </resource>
+  </resources>
+  <settings>
+    <configuration-provider>
+      <type-name>wsi.remote.gw.webservice.bc.BCConfigurationProvider</type-name>
+    </configuration-provider>
+    <configuration-provider>
+      <type-name>wsi.remote.gw.GWTimeoutConfigProvider</type-name>
+    </configuration-provider>
+  </settings>
+</webservice-collection>

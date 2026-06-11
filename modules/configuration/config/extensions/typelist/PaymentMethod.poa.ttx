@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<typelistextension xmlns="http://guidewire.com/typelists" name="PaymentMethod">
+  <typecode
+    code="account"
+    desc="Settled on a receivables/payables account, e.g. using BillingCenter"
+    name="Account"
+    retired="false"/>
+</typelistextension>

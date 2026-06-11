@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<typelistextension
+  xmlns="http://guidewire.com/typelists"
+  desc="The objective pronoun type"
+  name="PronounObjectiveType">
+  <typecode
+    code="them"
+    desc="Them"
+    name="Them"/>
+  <typecode
+    code="zir"
+    desc="Zir"
+    name="Zir"/>
+</typelistextension>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <Page
+    canVisit="perm.User.viewteam and perm.User.viewexploreclaims and gw.team.ExploreForClaimsUIHelper.get(GroupInfo).ShowTeamLink"
+    id="TeamGroupExploreForClaims"
+    title="DisplayKey.get(&quot;Web.Team.ExploreForClaims&quot;, GroupInfo.DisplayName)">
+    <LocationEntryPoint
+      signature="TeamGroupExploreForClaims(GroupInfo : gw.api.admin.TreeGroupInfo)"/>
+    <Variable
+      name="GroupInfo"
+      type="gw.api.admin.TreeGroupInfo"/>
+    <Screen
+      flexContainer="true"
+      id="TeamGroupExploreForClaimsScreen">
+      <Variable
+        initialValue="gw.team.ExploreForClaimsUIHelper.get(GroupInfo).TeamVisualizeUrl"
+        name="ExploreUrl"
+        recalculateOnRefresh="true"
+        type="String"/>
+      <EmbeddedPanel
+        appUrl="ExploreUrl.NotBlank ? ExploreUrl : &quot;&quot;"
+        border="false"
+        id="ExploreForClaimDisplayPanelId"
+        requestType="GET"/>
+    </Screen>
+  </Page>
+</PCF>

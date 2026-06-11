@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<Entity
+  name="PolicyLocationSummary">
+  <Columns>
+    <Column
+      beanPath="PolicyLocationSummary.AddressLine1"
+      name="addressLine1"
+      sortOrder="1"/>
+    <Column
+      beanPath="PolicyLocationSummary.AddressLine2"
+      name="addressLine2"
+      sortOrder="2"/>
+    <Column
+      beanPath="PolicyLocationSummary.AddressLine3"
+      name="addressLine3"
+      sortOrder="3"/>
+    <Column
+      beanPath="PolicyLocationSummary.City"
+      name="city"
+      sortOrder="4"/>
+    <Column
+      beanPath="PolicyLocationSummary.State"
+      name="state"
+      sortOrder="5"/>
+    <Column
+      beanPath="PolicyLocationSummary.PostalCode"
+      name="postalCode"
+      sortOrder="6"/>
+    <Column
+      beanPath="PolicyLocationSummary.Country"
+      name="country"
+      sortOrder="7"/>
+    <Column
+      beanPath="PolicyLocationSummary.AddressLine1Kanji"
+      name="addressLine1Kanji"/>
+    <Column
+      beanPath="PolicyLocationSummary.AddressLine2Kanji"
+      name="addressLine2Kanji"/>
+    <Column
+      beanPath="PolicyLocationSummary.CityKanji"
+      name="cityKanji"/>
+    <Column
+      beanPath="PolicyLocationSummary.CEDEX"
+      name="CEDEX"/>
+    <Column
+      beanPath="PolicyLocationSummary.CEDEXBureau"
+      name="CEDEXBureau"/>
+    <Column
+      beanPath="PolicyLocationSummary.County"
+      name="county"/>
+    <Column
+      beanPath="PolicyLocationSummary.ExtraField1"
+      name="extraField1"/>
+    <Column
+      beanPath="PolicyLocationSummary.ExtraField2"
+      name="extraField2"/>
+    <Column
+      beanPath="PolicyLocationSummary.ExtraField3"
+      name="extraField3"/>
+    <Column
+      beanPath="PolicyLocationSummary.ExtraField4"
+      name="extraField4"/>
+    <Column
+      beanPath="PolicyLocationSummary.ExtraField5"
+      name="extraField5"/>
+    <Column
+      beanPath="PolicyLocationSummary.ExtraField6"
+      name="extraField6"/>
+    <Column
+      beanPath="PolicyLocationSummary.ExtraField7"
+      name="extraField7"/>
+    <Column
+      beanPath="PolicyLocationSummary.ExtraField8"
+      name="extraField8"/>
+    <Column
+      beanPath="PolicyLocationSummary.ExtraField9"
+      name="extraField9"/>
+    <Column
+      beanPath="PolicyLocationSummary.ExtraField10"
+      name="extraField10"/>
+  </Columns>
+  <DisplayName><![CDATA[var formatter =  new gw.api.address.AddressFormatter() {
+    :Country = country,
+    :AddressLine1 = addressLine1,
+    :AddressLine2 = addressLine2,
+    :AddressLine3 = addressLine3,
+    :City = city,
+    :County = county,
+    :State = state,
+    :PostalCode = postalCode,
+    :AddressLine1Kanji = addressLine1Kanji,
+    :AddressLine2Kanji = addressLine2Kanji,
+    :CityKanji = cityKanji,
+    :CEDEX = CEDEX,
+    :CEDEXBureau = CEDEXBureau,
+    :ExtraField1 = extraField1,
+    :ExtraField2 = extraField2,
+    :ExtraField3 = extraField3,
+    :ExtraField4 = extraField4,
+    :ExtraField5 = extraField5,
+    :ExtraField6 = extraField6,
+    :ExtraField7 = extraField7,
+    :ExtraField8 = extraField8,
+    :ExtraField9 = extraField9,
+    :ExtraField10 = extraField10
+}
+                                      
+return formatter.format(formatter, ", ")]]></DisplayName>
+</Entity>

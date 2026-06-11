@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <ListViewPanel
+    id="ExchangeRatesLV">
+    <Require
+      name="exchangeRateSet"
+      type="FXExchangeRateSet"/>
+    <ExposeIterator
+      valueType="entity.FXExchangeRate"
+      widget="ExchangeRatesLV"/>
+    <RowIterator
+      editable="true"
+      elementName="exchangeRate"
+      forceRefreshDespiteChangedEntries="true"
+      toAdd="exchangeRateSet.addToFXExchangeRates(exchangeRate)"
+      toRemove="exchangeRate.remove()"
+      value="exchangeRateSet.FXExchangeRates"
+      valueType="entity.FXExchangeRate[]">
+      <Row>
+        <RangeCell
+          editable="true"
+          id="priceCurrency"
+          label="DisplayKey.get(&quot;ExchangeRates.ExchangeRatesLV.PriceCurrency&quot;)"
+          required="true"
+          value="exchangeRate.PriceCurrency"
+          valueRange="typekey.Currency.getTypeKeys(false).where(\currency -&gt; currency != exchangeRateSet.BaseCurrency)"
+          valueType="typekey.Currency"/>
+        <TextCell
+          editable="true"
+          id="rate"
+          label="DisplayKey.get(&quot;ExchangeRates.ExchangeRatesLV.Rate&quot;)"
+          required="true"
+          value="exchangeRate.Rate"
+          valueType="java.math.BigDecimal"/>
+      </Row>
+    </RowIterator>
+  </ListViewPanel>
+</PCF>

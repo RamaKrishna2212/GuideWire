@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<extension
+  xmlns="http://guidewire.com/datamodel"
+  entityName="ClaimInfo">
+  <index
+    desc="Index for performance improvement of Archive Info Page"
+    name="claiminfoschmadt">
+    <indexcol
+      keyposition="1"
+      name="ArchiveSchemaInfo"/>
+    <indexcol
+      keyposition="2"
+      name="ArchiveDate"/>
+    <indexcol
+      keyposition="3"
+      name="ArchiveState"/>
+  </index>
+</extension>
