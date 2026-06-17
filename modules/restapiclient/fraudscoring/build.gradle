@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+}
+
+group = 'fraudscoring'
+version = '1.0.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+repositories {
+    maven {
+        url "${project.rootDir.getAbsolutePath()}/../../repository"
+    }
+}
+
+configurations.configureEach {
+    transitive = false
+}
+
+dependencies {
+    implementation 'io.github.openfeign:feign-core:13.1'
+    implementation 'io.github.openfeign:feign-jackson:13.1'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.15.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.3'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.15.3'
+    compileOnly 'jakarta.annotation:jakarta.annotation-api:2.1.1'
+}
+
+jar {
+    archiveBaseName = "gwgen.fraudscoring"
+}

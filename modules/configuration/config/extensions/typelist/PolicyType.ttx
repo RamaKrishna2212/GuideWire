@@ -1333,4 +1333,25 @@
       code="endorsements"
       typelist="PolicyTab"/>
   </typecode>
+  <typecode
+    code="GenericMotorUK"
+    desc="Generic Motor UK"
+    identifierCode="GenericMotorUK"
+    name="Generic Motor UK">
+    <category
+      code="GenericMotorUKLine"
+      typelist="LOBCode"/>
+    <category
+      code="personal"
+      typelist="InternalPolicyType"/>
+    <category
+      code="endorsements"
+      typelist="PolicyTab"/>
+    <category
+      code="aggregatelimits"
+      typelist="PolicyTab"/>
+    <category
+      code="vehicles"
+      typelist="PolicyTab"/>
+  </typecode>
 </typelistextension>

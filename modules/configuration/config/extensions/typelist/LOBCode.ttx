@@ -171,4 +171,16 @@
       code="travel_per"
       typelist="PolicyType"/>
   </typecode>
+  <typecode
+    code="GenericMotorUKLine"
+    desc="Generic Motor UK Line"
+    identifierCode="GenericMotorUKLine"
+    name="Generic Motor UK Line">
+    <category
+      code="GenericMotorUK"
+      typelist="PolicyType"/>
+    <category
+      code="AUTO"
+      typelist="LossType"/>
+  </typecode>
 </typelistextension>

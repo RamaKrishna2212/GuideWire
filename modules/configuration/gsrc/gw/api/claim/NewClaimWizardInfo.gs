@@ -14,6 +14,9 @@ uses java.util.Set
 
 uses gw.lang.reflect.IType
 uses gw.api.validation.ValidationIssue
+uses gw.api.fraud.FraudScoringResult
+uses gw.api.fraud.FraudScoringService
+uses gw.api.util.Logger
 
 @Export
 class NewClaimWizardInfo extends NewClaimWizardInfoBase {
@@ -26,6 +29,12 @@ class NewClaimWizardInfo extends NewClaimWizardInfoBase {
   var _findPolicyUtils: FNOLFindPolicyUtils as FindPolicyUtils
 
   private var _wizardExpressions: pcfc.expressions.FNOLWizardExpressions.FNOLWizardExpressionsImpl
+
+
+  // ─── Fraud Scoring fields ───
+  private static final var FRAUD_LOG = Logger.forCategory("FraudScoring")
+  private var _fraudResult : FraudScoringResult
+  private var _fraudAssignmentCaptured : boolean = false
 
   /**
    * A list of service requests that are not going to be persisted with the new claim
@@ -621,4 +630,154 @@ class NewClaimWizardInfo extends NewClaimWizardInfoBase {
   property get IsLossTypeSet(): boolean {
     return _wizardExpressions.Claim.HasLossType
   }
+
+  // ═══════════════════════════════════════════════════════════════
+  // Fraud Scoring — Properties and Methods
+  // ═══════════════════════════════════════════════════════════════
+
+  /**
+   * Returns true if the current policy type is Generic Motor UK.
+   */
+  property get IsGenericMotorUK() : boolean {
+    var pt = SelectedPolicyType
+    return pt != null and pt == TC_GENERICMOTORUK
+  }
+
+  /**
+   * Returns the fraud API status string (SUCCESS, NOT_FOUND, ERROR, SKIPPED).
+   */
+  property get FraudApiStatus() : String {
+    return _fraudResult != null ? _fraudResult.Status : null
+  }
+
+  /**
+   * Returns the fraud score (1-5) or null.
+   */
+  property get FraudScore() : Integer {
+    return _fraudResult != null ? _fraudResult.Score : null
+  }
+
+  /**
+   * Returns the fraud risk description or null.
+   */
+  property get FraudRiskDescription() : String {
+    return _fraudResult != null ? _fraudResult.RiskDescription : null
+  }
+
+  /**
+   * Calls the fraud scoring API with the insured's details.
+   * Called from the FraudScore wizard step onEnter.
+   */
+  function callFraudScoringApi(claim : Claim) {
+    if (!IsGenericMotorUK) {
+      _fraudResult = FraudScoringResult.skipped()
+      return
+    }
+
+    var insured = claim.Insured
+    if (insured == null) {
+      FRAUD_LOG.warn("No insured on policy — skipping fraud score")
+      _fraudResult = FraudScoringResult.skipped()
+      return
+    }
+
+    // Get insured name with DisplayName fallback
+    var firstName = (insured typeis Person) ? insured.FirstName : null
+    var lastName = (insured typeis Person) ? insured.LastName : null
+
+    if ((firstName == null or firstName.trim().length() == 0)
+        and (lastName == null or lastName.trim().length() == 0)) {
+      // Fallback: split DisplayName
+      var displayName = insured.DisplayName
+      if (displayName != null and displayName.trim().length() > 0) {
+        var parts = displayName.trim().split("\\s+")
+        if (parts.length >= 2) {
+          firstName = parts[0]
+          lastName = parts[parts.length - 1]
+        } else if (parts.length == 1) {
+          firstName = parts[0]
+          lastName = parts[0]
+        }
+        FRAUD_LOG.info("Used DisplayName fallback: firstName=" + firstName + ", lastName=" + lastName)
+      }
+    }
+
+    // Get DOB
+    var dob : String = null
+    if (insured typeis Person and insured.DateOfBirth != null) {
+      var sdf = new java.text.SimpleDateFormat("yyyy-MM-dd")
+      dob = sdf.format(insured.DateOfBirth)
+    }
+
+    // Get address
+    var addr = insured.PrimaryAddress
+    var addressLine1 = addr != null ? addr.AddressLine1 : null
+    var city = addr != null ? addr.City : null
+    var postalCode = addr != null ? addr.PostalCode : null
+
+    _fraudResult = FraudScoringService.callFraudScoringApi(
+        firstName, lastName, dob, addressLine1, city, postalCode)
+
+    // Attach note to claim
+    attachFraudNote(claim)
+  }
+
+  /**
+   * Attaches a note to the claim with the fraud score result.
+   */
+  function attachFraudNote(claim : Claim) {
+    if (_fraudResult == null) return
+
+    var noteBody : String
+    if (_fraudResult.Status == FraudScoringResult.STATUS_SUCCESS) {
+      noteBody = "The fraud score for the insured is " + _fraudResult.Score
+          + ". The fraud risk description is " + _fraudResult.RiskDescription
+    } else if (_fraudResult.Status == FraudScoringResult.STATUS_NOT_FOUND) {
+      noteBody = "No fraud information for the insured was found"
+    } else {
+      // Don't attach note for ERROR or SKIPPED
+      return
+    }
+
+    var note = new Note()
+    note.Author = User.util.CurrentUser
+    note.Topic = NoteTopicType.TC_FNOL
+    note.Subject = "Fraud Score Check"
+    note.Body = noteBody
+    claim.addToNotes(note)
+    FRAUD_LOG.info("Fraud note attached: " + noteBody)
+  }
+
+  /**
+   * Assigns the claim to Super User if the fraud score is high risk (>= 4).
+   * Called from the Summary step onEnter to ensure assignment persists through save.
+   */
+  function assignSuperUserIfHighRisk(claim : Claim) {
+    if (_fraudResult == null or !_fraudResult.IsHighRisk or _fraudAssignmentCaptured) {
+      return
+    }
+
+    FRAUD_LOG.info("High risk fraud score detected (score=" + _fraudResult.Score + "). Assigning to Super User.")
+
+    // Find the Super User
+    var superUser = gw.api.database.Query.make(User)
+        .join(User#Credential)
+        .compare(Credential#UserName, gw.api.database.Relop.Equals, "su")
+        .select().AtMostOneRow
+
+    if (superUser != null) {
+      var suGroup = superUser.RootGroup
+      if (suGroup != null) {
+        this.CommonAssignment = true
+        this.CommonAssignee = new gw.api.assignment.UserAssignee(suGroup, superUser)
+        _fraudAssignmentCaptured = true
+        FRAUD_LOG.info("Claim assigned to Super User (group=" + suGroup.DisplayName + ")")
+      } else {
+        FRAUD_LOG.warn("Super User has no RootGroup — cannot assign")
+      }
+    } else {
+      FRAUD_LOG.warn("Super User 'su' not found in database")
+    }
+  }
+
 }

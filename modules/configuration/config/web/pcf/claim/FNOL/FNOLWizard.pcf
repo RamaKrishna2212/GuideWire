@@ -169,10 +169,20 @@
         title="DisplayKey.get(&quot;Wizard.NewClaimWizard.NewClaimServices.Step&quot;, wizardInfo.CurrentStepNumber, wizardInfo.TotalNumberOfSteps)"
         visible="wizardInfo.IsServicesStepAvailable"/>
       <WizardStep
+        allowFinish="true"
+        available="wizardInfo.IsGenericMotorUK"
+        id="FraudScore"
+        label="&quot;Fraud Score Check&quot;"
+        onEnter="wizardInfo.callFraudScoringApi(Claim)"
+        save="false"
+        screen="FNOLWizard_FraudScoreScreen(Claim, wizardInfo)"
+        title="&quot;Fraud Score Check&quot;"
+        visible="wizardInfo.IsGenericMotorUK"/>
+      <WizardStep
         handlesValidationIssue="VALUE typeis entity.Exposure"
         id="Summary"
         label="DisplayKey.get(&quot;Wizard.NewClaimWizard.NewClaimAssign.Label&quot;)"
-        onEnter="wizardInfo.addExposureForEveryIncidentIfPossible()"
+        onEnter="wizardInfo.addExposureForEveryIncidentIfPossible(); wizardInfo.assignSuperUserIfHighRisk(Claim)"
         mode="gw.config.LOBAbstraction.ForClaim.ForLossType.getUIMode(Claim)"
         screen="FNOLWizard_AssignSaveScreen(Claim, wizardInfo)"
         title="DisplayKey.get(&quot;Wizard.NewClaimWizard.NewClaimAssign.Step&quot;, wizardInfo.CurrentStepNumber, wizardInfo.TotalNumberOfSteps)"/>

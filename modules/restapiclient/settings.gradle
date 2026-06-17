@@ -1,2 +1,3 @@
 rootProject.name = "endpoint"
 include 'endpoint'
+include 'fraudscoring'

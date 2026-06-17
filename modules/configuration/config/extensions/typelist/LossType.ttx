@@ -22,6 +22,9 @@
     <category
       code="BusinessAutoLine"
       typelist="LOBCode"/>
+    <category
+      code="GenericMotorUKLine"
+      typelist="LOBCode"/>
   </typecode>
   <typecode
     code="PR"

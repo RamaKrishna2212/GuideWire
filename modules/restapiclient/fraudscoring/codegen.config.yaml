@@ -1,0 +1,8 @@
+invokerPackage: gwgen.fraudscoring
+apiPackage: gwgen.fraudscoring.api
+modelPackage: gwgen.fraudscoring.model
+artifactId: gwgen.fraudscoring
+artifactVersion: 1.0.0
+useJakartaEe: true
+useRuntimeException: true
+sourceFolder: src/main/java

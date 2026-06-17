@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<PCF
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../../../pcf.xsd">
+  <Screen
+    id="FNOLWizard_FraudScoreScreen">
+    <Require
+      name="Claim"
+      type="Claim"/>
+    <Require
+      name="wizardInfo"
+      type="gw.api.claim.NewClaimWizardInfo"/>
+    <Toolbar>
+      <WizardButtons/>
+    </Toolbar>
+    <DetailViewPanel>
+      <InputColumn>
+        <Label
+          label="&quot;Fraud Score Check&quot;"
+          visible="true"/>
+        <!-- SUCCESS: Show score and risk description -->
+        <TextInput
+          id="FraudScoreValue"
+          label="&quot;Fraud Score&quot;"
+          value="wizardInfo.FraudScore != null ? wizardInfo.FraudScore.toString() : &quot;N/A&quot;"
+          valueType="java.lang.String"
+          visible="wizardInfo.FraudApiStatus == &quot;SUCCESS&quot;"/>
+        <TextInput
+          id="FraudRiskDescription"
+          label="&quot;Risk Description&quot;"
+          value="wizardInfo.FraudRiskDescription != null ? wizardInfo.FraudRiskDescription : &quot;N/A&quot;"
+          valueType="java.lang.String"
+          visible="wizardInfo.FraudApiStatus == &quot;SUCCESS&quot;"/>
+        <!-- High risk warning -->
+        <TextInput
+          id="HighRiskWarning"
+          label="&quot;Warning&quot;"
+          value="&quot;The insured has a high-risk fraud score. The claim will be automatically assigned to the Super User.&quot;"
+          valueType="java.lang.String"
+          visible="wizardInfo.FraudApiStatus == &quot;SUCCESS&quot; and wizardInfo.FraudScore != null and wizardInfo.FraudScore &gt;= 4"/>
+        <!-- NOT_FOUND message -->
+        <TextInput
+          id="NotFoundMessage"
+          label="&quot;Result&quot;"
+          value="&quot;No fraud score information for the insured was found.&quot;"
+          valueType="java.lang.String"
+          visible="wizardInfo.FraudApiStatus == &quot;NOT_FOUND&quot;"/>
+        <!-- ERROR message -->
+        <TextInput
+          id="ErrorMessage"
+          label="&quot;Result&quot;"
+          value="&quot;The fraud score data request failed.&quot;"
+          valueType="java.lang.String"
+          visible="wizardInfo.FraudApiStatus == &quot;ERROR&quot;"/>
+        <!-- SKIPPED message -->
+        <TextInput
+          id="SkippedMessage"
+          label="&quot;Result&quot;"
+          value="&quot;Fraud score check was skipped — insufficient insured details.&quot;"
+          valueType="java.lang.String"
+          visible="wizardInfo.FraudApiStatus == &quot;SKIPPED&quot;"/>
+      </InputColumn>
+    </DetailViewPanel>
+  </Screen>
+</PCF>
